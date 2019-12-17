@@ -1,0 +1,331 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block nav_other_pages %}{% endblock nav_other_pages %}
+
+{% block sitecontent %}
+<!--=================================
+  intro -->
+
+<section class="content-scroller">
+  <div id="home" class="intro-bg gradient-01" style="background: url('{% static 'images/bg.png' %}');">
+   <div id="scroll-down" class="intro">
+    <div class="intro-content">
+      <div class="container-fluid">
+      <div class="row">
+       <div class="col-md-12 text-left content-left">
+         <h1> <span> Hello i’m </span>Daniel Kilanko</h1>
+         <h2 style="color:white; font-weight:bolder">And I'm Software Engineer</h2>
+         <!--<div id="typer"></div>-->
+        </div>
+       </div>
+     </div>
+     </div>
+    <a class="scroll-down page-scroll" title="Scroll Down" href="#about"><i></i></a>
+  </div>
+</div>
+
+<!--=================================
+  intro -->
+
+
+<!--=================================
+  about -->
+
+<section id="about" class="about white-bg page-section">
+ <div class="container-fluid">
+   <div class="row">
+     <div class="col-lg-8 col-md-8 col-sm-8">
+   	 	<div class="section-title">
+   	 	  <div class="section-title-name">
+   	 	  	<span>Know about me</span>
+   	 	  	<h2>About Me</h2>
+   	 	  </div>
+   	 	  <div class="title-name-gray">
+   	 	  	<strong>About me</strong>
+   	 	  </div>
+   	 	</div>
+   	 	<div class="contact-block">
+   	 	 <div class="row">
+   	 	 	<div class="col-lg-12 col-md-12">
+   	 	 	  <div class="about-block clearfix">
+   	 	 		<p>It all started about <b>10 years ago</b> when i created my first java based app <code>"Hello World"</code>.
+   	 	 		I'm currently a senior backend developer with <a href="http://koyekairos.com/" target="_blank">Koye Kairos</a>, while
+                    still maintening my freelance company <a href="http://ideathinkers.com.ng" target="_blank">ideathinkers web agency </a>.<br /> I have developed customized websites and
+                    web applications for many organisations and businesses.
+
+                <p>My core strenght is <b>Python</b> but i have deep knowledge in several others programming languages.</p>
+
+                <p>Aside coding, i enjoy traveling, meeting new people, trying new things and cooking.</p>
+   	 	 	</div>
+   	 	   </div>
+   	 	 </div>
+   	 	</div>
+   	 </div>
+   	 <div class="col-lg-4 col-md-4 col-sm-4">
+   	   <div class="about-image">
+   	   	 <img class="img-responsive" src="{% static 'images/me.jpeg' %}" alt="">
+   	   </div>
+   	   <div class="about-social">
+   	   	 <ul>
+          <li><a href="https://www.linkedin.com/in/daniel-kilanko-7a724088/" target="_blank"><i class="fa fa-linkedin"></i> </a></li>
+          <li><a href="https://www.instagram.com/ideathinkers/  " target="_blank"><i class="fa fa-instagram"></i></a></li>
+          <li><a href="https://github.com/danlanko" target="_blank"><i class="fa fa-github"></i> </a></li>
+
+
+   	   	 </ul>
+   	   </div>
+   	 </div>
+   </div>
+ </div>
+</section>
+
+<!--=================================
+  about -->
+
+
+<!--=================================
+  My Skill -->
+
+<section id="skill" class="my-skill white-bg page-section">
+ <div class="container-fluid">
+   <div class="row">
+	<div class="col-lg-12 col-md-12">
+	 <div class="section-title">
+   	 	 <div class="section-title-name">
+            <span>Technologies</span>
+   	  	  	<h2>My Skill</h2>
+   	    </div>
+   	    <div class="title-name-gray">
+   	   	<strong>My Skill</strong>
+   	   </div>
+   	 </div>
+	</div>
+   </div>
+   <div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ">
+ 	    <div class="skill-content">
+            <h2>Technologies i'm comfortable with</h2>
+            <span>“I try to increase my knowledge base by being loyal to my study schedule. With time, i'll be adding to this skills”</span>
+ 		    <div class="tags-2">
+                <ul>
+                {% for tech in tech %}
+                    <li><a>{{ tech.technology }}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+            {% if study_lenght != 0 %}
+             <h4>Currently Studying....</h4>
+             <div class="tags-2">
+                <ul>
+                {% for tech in study %}
+                    <li><a>{{ tech.studying_what }}</a></li>
+                {% endfor %}
+                </ul>
+        </div>
+        {% endif %}
+ 	 </div>
+ 	 </div>
+    </div>
+ </div>
+</section>
+
+<!--=================================
+  My Skill -->
+
+
+<!--=================================
+ portfolio -->
+
+<section id="portfolio" class="portfolio white-bg page-section">
+ <div class="container-fluid">
+   <div class="row">
+  <div class="col-lg-12 col-md-12">
+   <div class="section-title">
+       <div class="section-title-name">
+          <span>My Featured Work</span>
+            <h2>Some of my work</h2>
+        </div>
+        <div class="title-name-gray">
+        <strong>My Portfolio</strong>
+       </div>
+     </div>
+  </div>
+   </div>
+ <div class="row">
+       <div class="col-lg-12 col-md-12">
+     <div class="isotope-filters text-left">
+          <button data-filter="" class="active"> View All <span>/</span></button>
+         {% for cat in work_cat %}
+          <button data-filter=".{{ cat.port_category }}"> {{ cat.port_category }} <span>/</span></button>
+         {% endfor %}
+       </div>
+    </div>
+  </div>
+  <div class="isotope popup-portfolio full-screen">
+      {% for item in work %}
+    <div class="grid-item {{ item.port_category }}" style="width: 310px;">
+      <div class="portfolio-item">
+     <div class="item">
+      <div class="item-hover">
+          <div class="item-inner">
+        <img class="img-responsive" src="{{ item.portfolio_image1.url }}" alt=""></div>
+         <div class="item-info">
+         <a href="#">  {{ item.title }}</a>
+          <div class="item-link">
+           <a class="portfolio-img" href="{{ item.portfolio_image1.url }}"><span class="fa fa-plus"></span></a>
+           <a href="{{ item.live_demo }}" target="_blank"><span class="fa fa-link"></span></a>
+          </div>
+           </div>
+        </div>
+       </div>
+        </div>
+    </div>
+      {% endfor %}
+   </div>
+  </div>
+</section>
+
+<!--=================================
+ portfolio -->
+
+<!--=================================
+ blog -->
+
+<section id="blog" class="blog white-bg page-section">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="section-title">
+                <div class="section-title-name">
+                    <span>My Latest Blog Posts</span>
+                        <h2>From the blog </h2>
+                </div>
+                <div class="title-name-gray">
+                    <strong>Blog</strong>
+                 </div>
+             </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for blog in latest_blog %}
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="blog-block">
+                <div class="blog-image">
+                    <img class="img-responsive" src="{{ blog.image.url }}" alt="">
+                    <div class="blog-date">
+                        <span>{{ blog.date|date:'M' }} <br />{{ blog.date.day}}</span>
+                    </div>
+                </div>
+                <div class="blog-info">
+                    <div class="blog-meta">
+                        <!--<p><span class="fa fa-comment"></span> <a href="#">4</a></p>-->
+                        <p><span class="fa fa-user"></span> <a href="#">Admin </a></p>
+                        <p><span class="fa fa-folder"></span> <a href="#">{{ blog.category }}</a></p>
+                    </div>
+                    <div class="blog-content">
+                        <a href="{% url 'single' blog.id %}">{{ blog.title|truncatechars:14 }}</a>
+                        <p>{{ blog.content|striptags|safe|truncatewords:12 }}</p>
+                        <div class="blog-bottom clearfix">
+                        <div class="button-small">
+                            <a href="{% url 'single' blog.id %}">Read More..</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+        <div class="clearfix"></div>
+    <div class="button-large text-center">
+            <a href="{% url 'blogs' %}">All blogs</a>
+    </div>
+</div>
+</section>
+
+<!--=================================
+ blog -->
+
+
+<!--=================================
+ testimonials -->
+
+<section id="testimonials" class="testimonials white-bg page-section-pt">
+ <div class="container-fluid">
+   <div class="row">
+	<div class="col-lg-12 col-md-12">
+	 <div class="section-title">
+   	 	 <div class="section-title-name">
+   	 	  	<span>Look at their opinions!</span>
+   	  	  	<h2>Testimonials </h2>
+   	    </div>
+   	    <div class="title-name-gray">
+   	   	<strong>Testimonials</strong>
+   	   </div>
+   	 </div>
+	</div>
+   </div>
+ <div class="row">
+     {% for testi in testimonial %}
+  <div class="col-lg-4 col-md-4 col-sm-4">
+    <div class="testimonials-block">
+      <div class="testimonials-content">
+<!--{#      	 <div class="testimonials-avtar">#}-->
+<!--{#             {% if testi.image in testimonial %}#}-->
+<!--{#                 <img class="imgresponsive" src="{{ testi.image.url }}" alt="">#}-->
+<!--{#             {% endif %}#}-->
+<!--{#            <p>No Image</p>#}-->
+<!--{##}-->
+<!--{#      	 </div>#}-->
+      	 <div class="testimonials-comment">
+      	 	<p>{{ testi.testimony }}</p>
+      	 </div>
+      </div>
+      <div class="testimonials-name">
+      	<h4>{{ testi.name }}</h4>
+      	<span>{{ testi.job_rank|upper}}</span>
+      </div>
+    </div>
+  </div>
+     {% endfor %}
+ </div>
+ </div>
+</section>
+
+<!--=================================
+ testimonials -->
+
+
+<!--=================================
+ contact -->
+
+<section id="contact" class="google-map white-bg page-section-pt">
+ <div class="container-fluid">
+  <div id="google-map">
+	 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.6249273927215!2d3.4727030142321276!3d6.442184995339214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf44c719da30b%3A0x982341a66240a69b!2sRosenut%20Solicitors!5e0!3m2!1sen!2sng!4v1576567053261!5m2!1sen!2sng" width="1050" height="600" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+ </div>
+ <div class="contact">
+ 	<h2>Say Hi It’s Free! </h2>
+ 	<div class="address">
+ 	  <ul>
+ 	  	<li><span class="fa fa-envelope"></span> <p>daniel@ideathinkers.com.ng</p></li>
+ 	  	<li><span class="fa fa-mobile-phone"></span> <p>+234 80 8046 8229 </p></li>
+ 	  	<li><span class="fa fa-whatsapp"></span> <p> +234 80 8046 8229</p></li>
+ 	  </ul>
+ 	</div>
+ 	<div class="social">
+ 	 <p>You can also connect with me on Social Networks</p>
+	 <ul>
+          <li><a href="https://www.linkedin.com/in/daniel-kilanko-7a724088/" target="_blank"><i class="fa fa-linkedin"></i> </a></li>
+          <li><a href="https://www.instagram.com/ideathinkers/  " target="_blank"><i class="fa fa-instagram"></i></a></li>
+          <li><a href="https://github.com/danlanko" target="_blank"><i class="fa fa-github"></i> </a></li>
+
+ 	  </ul>
+ 	</div>
+ </div>
+ </div>
+</section>
+
+<!--=================================
+ contact -->
+</section>
+{% endblock sitecontent %}

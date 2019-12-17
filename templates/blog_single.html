@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {% for blog in blog %}{{ blog.title }} in {{ blog.category }} {% endfor %} {% endblock title %}
+{% block nav_index %}{% endblock nav_index %}
+{% block sitecontent %}
+<!--=================================
+  intro -->
+<section class="content-scroller">  
+  <div style ="background-image: url({% static 'images/bg/02.jpg' %}); " class="page-header bg gradient-01">
+      <div class="container-fluid">
+      <div class="row">
+        <div class="top-bar clearfix">
+          <div class="back-home pull-left">
+            <a href="{% url 'blogs' %}"><span class="fa fa-arrow-left"></span> back to blog</a>
+          </div>
+          <ul class="breadcrumb pull-right">
+            <li><a href="{% url 'homepage' %}"><span class="fa fa-home"></span> Home</a></li>
+            <li><a href="blog.html"> Blog</a></li>
+            <li class="active">Blog single</li>        
+          </ul>
+        </div>
+        <div class="page-header-title">
+            {% for title in blog %}
+           <h1>{{ title.title }}</h1>
+            <div class="blog-meta">
+              <p><span class="fa fa-comment"></span> <a>4</a></p>
+              <p><span class="fa fa-user"></span> <a>Admin </a></p>
+              <p><span class="fa fa-folder"></span> <a href="{% url 'category_blog' title.category_id %}">{{ title.category }}</a></p>
+            </div>
+            {% endfor %}
+        </div>
+       </div>
+    </div>
+  </div>
+ 
+<!--=================================
+intro --> 
+
+
+<!--=================================
+  blog -->
+<section class="blog blog-single white-bg page-section-pt">
+    <div class="container-fluid">
+        <div class="row">
+            {% for blog in blog %}
+            <div class="col-lg-9 col-md-9">
+                <div class="owl-carousel-1">
+                    <div class="item"> <img src="{{ blog.image.url }}" alt=""> </div>
+                </div>
+                <div class="content">
+                    <p>{{ blog.content|safe }}</p>
+                </div>
+                <br />
+                <div class="fb-comments" data-href="https://danielkilanko.me" data-numposts="5" data-width="100%"></div>
+                <div class="contact-form clearfix"> </div>
+            </div>
+            {% endfor %}
+            <div class="col-lg-3 col-md-3">
+            <div class="slidebar">
+              <div class="author">
+                <div class="author-details">
+                    <div class="author-avtar">
+                      <img class="img-responsive" src="{% static 'images/my-photo.jpg' %}" alt="">
+                    </div>
+                    <div class="author-name">
+                      <h4>Kilanko Daniel</h4>
+                      <b> WEB DEVELOPER</b>
+                    </div>
+                </div>
+                <div class="author-content">
+                 <p> It all started about <b>10 years ago</b> when i created my first java based app <code>"Hello World"</code>.
+                        Now, with a friend i run <a href="http://ideathinkers.com.ng" target="_blank">ideathinkers web agency </a>. We have developed customized websites and
+                        web applications for many organisations and businesses. </p>
+
+                </div>
+              </div>
+              <div class="slidebar-share">
+                  <h4>share post : </h4>
+                  <ul>
+                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fa fa-pinterest-p"></i> </a></li>
+                  <li><a href="#"><i class="fa fa-linkedin"></i> </a></li>
+                </ul>
+               </div>
+              <div class="slidebar-tag">
+                <h3>Categories </h3>
+                <ul>
+                   {% for cat in blog_cat %}
+                  <li><a href="{% url 'category_blog' cat.id %}">{{ cat.category }} </a></li>
+                    {% endfor %}
+                </ul>
+              </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=1741275036151923";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+</section>
+
+<!--=================================
+ blog --> 
+  
+
+
+</section>
+{% endblock sitecontent %}

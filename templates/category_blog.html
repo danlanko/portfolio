@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static  %}
+{% block title %} {% if category in blog %} {{ blog.category }} category {% endif %}{% endblock title %}
+{% block nav_index %}{% endblock nav_index %}
+{% block sitecontent %}
+<!--=================================
+  intro -->
+<section class="content-scroller">
+{% for image in blog_cat_image  %}
+  <div style ="background-image: url({{ image.catgory_image.url }})" class="page-header bg gradient-01">
+      {% endfor %}
+      <div class="container-fluid">
+      <div class="row">
+        <div class="top-bar clearfix">
+          <div class="back-home pull-left">
+            <a href="{% url 'blogs' %}"><span class="fa fa-arrow-left"></span> back to blog</a>
+          </div>
+          <ul class="breadcrumb pull-right">
+            <li><a href="{% url 'homepage' %}"><span class="fa fa-home"></span> Home</a></li>
+            <li class="active">Blog</li>        
+          </ul>
+        </div>
+          {% for id in blog %}
+        <div class="page-header-title">
+           <h1>{{ id.category }}</h1>
+           <span>Kilanko Daniel Blog</span>
+        </div>
+          {% endfor %}
+       </div>
+    </div>
+  </div>
+  
+<!--=================================
+  intro --> 
+
+  
+<!--=================================
+  blog --> 
+
+<section class="blog blog-page white-bg page-section">
+ <div class="container-fluid">
+  <div class="row">
+   {% for blog in blog_p %}
+  <div class="col-lg-3 col-md-6 col-sm-6">
+   <div class="blog-block">
+   	  <div class="blog-image">
+   	  	 <img class="img-responsive" src="{{ blog.image.url }}" alt="">
+   	  	 <div class="blog-date">
+   	  	 	<span>{{ blog.date|date:'M' }} <br />{{ blog.date.day}}</span>
+   	  	 </div>
+   	  </div>
+   	  <div class="blog-info">
+   	  	<div class="blog-meta">
+   	  		<p><span class="fa fa-comment"></span> <a href="#">4</a></p>
+   	  		<p><span class="fa fa-user"></span> <a href="#">danlanko </a></p>
+   	  		<p><span class="fa fa-folder"></span> <a href="{% url 'category_blog' blog.category_id %}">{{ blog.category }}</a></p>
+   	  	</div>
+   	  	<div class="blog-content">
+   	  		<a href="{% url 'single' blog.id %}">{{ blog.title|truncatechars:14 }}</a>
+   	  		<p>{{ blog.content|striptags|safe|truncatewords:12 }}</p>
+   	  		<div class="blog-bottom clearfix">
+   	  		 <div class="button-small">
+   	  			<a href="{% url 'single' blog.id %}">Read More..</a>
+             </div>
+   	  	 </div>
+   	  	</div>
+   	  </div>
+   </div>
+  </div>
+     {% endfor %}
+ </div>
+ <div class="row">
+   <div class="col-lg-12 col-md-12 text-center">
+        {% if blog_p.has_other_pages %}
+          <ul class="pagination">
+            {% if blog_p.has_previous %}
+              <li><a href="?page={{ blog_p.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in blog_p.paginator.page_range %}
+              {% if blog_p.number == i %}
+                <li class="active"><span>{{ i }}</span></li>
+              {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if blog_p.has_next %}
+              <li><a href="?page={{ blog_p.next_page_number }}">&raquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+          </ul>
+       {% endif %}
+   </div>
+  </div>
+ </div>
+</section>
+  
+<!--=================================
+  blog -->
+{% endblock sitecontent %}

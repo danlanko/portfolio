@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="Daniel Kilanko, Web-Designer, Nigeria,Personal Website, CV" />
+<meta name="description" content="Daniel Kilanko, Web Developer and a Python Developer" />
+<meta name="author" content="potenzaglobalsolutions.com" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>{% block title %}Kilanko Daniel | Web Developer, Python Developer- Software Engineer, Data Scientist. {% endblock title %}</title>
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+
+<!-- bootstrap -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- google font -->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,300italic,400italic,600italic,700,700italic,800,800italic' rel='stylesheet' type="text/css" />
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,100,100italic,200italic,200,300,300italic,400italic,500,500italic,600,600italic,700italic,900italic,900,800,700,800italic' rel='stylesheet' type="text/css" />
+
+<!-- themify icon -->
+<link href="{% static 'css/themify-icons.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- font awesome  -->
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- magnific popup -->
+<link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- jquery ui -->
+<link rel='stylesheet' href='{% static 'css/jquery-ui.css' %}'>
+
+<!--  owl carousel -->
+<link rel='stylesheet' href='{% static 'css/owl.carousel.css' %}'>
+
+<!-- main style -->
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- responsive -->
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+<!--=================================
+  header -->
+
+<div class="menu-responsive"><a href="#"> <b>Daniel Kilanko</b></a> <a id="menu-icon" class="but" href="#"><span class="fa fa-bars"></span> </a></div>
+ <header id="left-header" class="header">
+	<nav id="menu" class="navbar navbar-default">
+	  <div class="navbar-header">
+ 	    <a class="navbar-brand" href="{% url 'homepage' %}"> <img style="height: auto; width: 150px" id="logo_img" src="{% static '/images/logo.png' %}" alt="logo coming "> </a>
+	  </div>
+	  <div class="collapse navbar-collapse navbar-ex1-collapse">
+	    <ul id="navbar" class="nav navbar-nav">
+            {% block nav_index %}
+	      <li class="active"><a href="#home" class="page-scroll">Home</a></li>
+	      <li><a href="#about" class="page-scroll">About</a></li>
+	       <li><a href="#skill" class="page-scroll">Skills</a></li>
+	       <li><a href="#portfolio" class="page-scroll">Portfolio</a></li>
+	       <li><a href="#blog" class="page-scroll">Blogs</a></li>
+	       <li><a href="#testimonials" class="page-scroll">Testimonials</a></li>
+	       <li><a href="#contact" class="page-scroll">Say Hello</a></li>
+            {% endblock nav_index %}
+
+            {% block nav_other_pages %}
+	      <li><a href="{% url 'homepage' %}" >Back-Home</a></li>
+	      <li><a href="{% url 'blogs' %}" >Back-To-Blogs</a></li>
+            {% for cat in blog_cat %}
+           <li><a href="{% url 'category_blog' cat.id %}">{{ cat.category }}</a></li>
+            {% endfor %}
+            {% endblock nav_other_pages %}
+	    </ul>
+   </div>
+</nav>
+<div class="menu-footer">
+	<div class="social">
+		<ul>
+		  <li><a href="https://www.linkedin.com/in/daniel-kilanko-7a724088/" target="_blank"><i class="fa fa-linkedin"></i> </a></li>
+          <li><a href="https://www.instagram.com/ideathinkers/  " target="_blank"><i class="fa fa-instagram"></i></a></li>
+          <li><a href="https://github.com/danlanko" target="_blank"><i class="fa fa-github"></i> </a></li>
+		</ul>
+	</div>
+	<div class="copyright">
+		<p>© Dan Lanko <br/> all rights reserved</p>
+	</div>
+ </div>
+</header>
+
+<!--=================================
+  header -->
+
+{% block sitecontent %}
+<!--=================================
+  intro -->
+
+{% endblock sitecontent %}
+<!--<div class="contact-form">-->
+<!--   <div id="contact-wrapper">-->
+<!--    <div class="contact-content">-->
+<!--     <div id="formmessage">Success/Error Message Goes Here</div>-->
+<!--       <form class="form-horizontal" id="contactform" method="post" action="#">-->
+<!--           {% csrf_token %}-->
+<!--          <div class="contact-form">-->
+<!--            <h4>Drop me a line</h4>-->
+<!--            <p>Use this form to tell me about your project goals and needs. I will be in touch within 24 hours.</p>-->
+<!--              {{ form.name }}-->
+<!--              {{ form.email }}-->
+<!--              {{ form.phone }}-->
+<!--              {{ form.message }}-->
+<!--{#             <input type="hidden" name="action" value="sendEmail"/>#}-->
+<!--            <button id="submit" name="submit" type="submit" value="Send" class="button-small"> Say Hello! </button>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--        <div id="ajaxloader" style="display:none"><img class="center-block" src="{% static 'images/ajax-loader-white.gif' %}" alt=""></div>-->
+<!--   </div>-->
+<!--   <a href="#" class="contact-toggle"><span class="fa fa-comments-o"></span></a>-->
+<!--  </div>-->
+<!-- </div>-->
+
+
+<!--=================================
+ javascript -->
+
+<!-- jquery -->
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+
+<!-- modernizr -->
+<script type="text/javascript" src="{% static 'js/modernizr.min.js' %}"></script>
+
+<!-- Plugins -->
+<script type="text/javascript" src='{% static 'js/plugins.js' %}'></script>
+
+<!-- map script -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjVoaCW3PAn52C7WPpJ7NBBqU1_TUfnSI" type="text/javascript"></script>
+<script type="text/javascript" src="{% static 'js/map-scripts.js' %}"></script>
+
+<!-- datepicker -->
+<script type="text/javascript" src="{% static 'js/datepicker-script.js' %}"></script>
+
+<!-- style customizer  -->
+<script type="text/javascript" src="{% static 'js/style-customizer.js' %}"></script>
+
+<!-- custom -->
+<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>
